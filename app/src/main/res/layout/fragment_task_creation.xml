@@ -1,15 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context=".TaskCreationDialog"
              android:padding="16dp"
-             style="@style/Theme.DailyTasks">
+             style="@style/Theme.DailyTasks"
+             android:orientation="vertical">
 
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:minWidth="600dp"
             android:layout_height="wrap_content"
-            android:text="Create a New Task"/>
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:text="@string/create_a_new_task"/>
 
-</FrameLayout>
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/task_name_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/task_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/task_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/task_description_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/task_description">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/task_description_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/task_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save"/>
+</LinearLayout>

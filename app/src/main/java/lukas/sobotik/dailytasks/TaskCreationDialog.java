@@ -2,23 +2,49 @@ package lukas.sobotik.dailytasks;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import androidx.fragment.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class TaskCreationDialog extends DialogFragment {
 
     public static String TAG = "TaskCreationDialog";
+
+    TextInputEditText taskName;
+    TextInputEditText taskDescription;
+    MaterialButton saveButton;
     /** The system calls this to get the DialogFragment's layout, regardless
      of whether it's being displayed as a dialog or an embedded fragment. */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout to use as dialog or embedded fragment
-        return inflater.inflate(R.layout.fragment_task_creation, container, false);
+        View view = inflater.inflate(R.layout.fragment_task_creation, container, false);
+
+        saveButton = view.findViewById(R.id.task_save_button);
+        taskName = view.findViewById(R.id.task_name_edit_text);
+        taskDescription = view.findViewById(R.id.task_description_edit_text);
+
+        saveButton.setOnClickListener(clickedView -> {
+            if (!Objects.requireNonNull(taskName.getText()).toString().equals("")) {
+
+                this.dismiss();
+            } else {
+                taskName.setError("Task Name is Required");
+                taskName.requestFocus();
+            }
+        });
+
+        return view;
     }
 
     /** The system calls this only when creating the layout in a dialog. */
@@ -31,6 +57,7 @@ public class TaskCreationDialog extends DialogFragment {
         // remove the dialog title, but you must call the superclass to get the Dialog.
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         return dialog;
     }
 }

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DailyTasks</string>
+    <string name="save">Save</string>
+    <string name="create_a_new_task">Create a New Task</string>
+    <string name="task_name">Task Name</string>
+    <string name="task_description">Task Description</string>
 </resources>
