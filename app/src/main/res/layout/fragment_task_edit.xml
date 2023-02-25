@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".TaskCreationDialog"
+              android:padding="16dp"
+              style="@style/Theme.DailyTasks"
+              android:orientation="vertical">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:minWidth="600dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:text="@string/edit_a_task"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/task_edit_name_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/task_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/task_edit_name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/task_edit_description_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/task_description">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/task_edit_description_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/task_edit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"/>
+</LinearLayout>

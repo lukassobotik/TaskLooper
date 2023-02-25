@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 
@@ -58,5 +59,23 @@ class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor;
         cursor = db.rawQuery(query, null);
         return cursor;
+    }
+
+    void updateData(Task task) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_TASK_TITLE, task.taskName);
+        cv.put(COLUMN_TASK_DESCRIPTION, task.taskDescription);
+
+        String stringId = String.valueOf(task.id);
+        Log.d("xxx", "StringId: " + stringId);
+        Log.d("xxx", "new name: " + task.taskName);
+
+        long result = db.update(TABLE_NAME, cv, COLUMN_ID + "= ?", new String[]{stringId});
+        if (result == -1) {
+            Toast.makeText(context, "Failed to edit the Task", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully edited the Task", Toast.LENGTH_SHORT).show();
+        }
     }
 }

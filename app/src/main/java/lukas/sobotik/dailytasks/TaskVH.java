@@ -7,9 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 
 public class TaskVH extends RecyclerView.ViewHolder {
-    TextView textView;
+    TextView taskName;
+    TextView taskDescription;
     public TaskVH(@NonNull @NotNull View itemView) {
         super(itemView);
-        textView = itemView.findViewById(R.id.task_card_txt);
+        taskName = itemView.findViewById(R.id.task_card_name);
+        taskDescription = itemView.findViewById(R.id.task_card_description);
+    }
+    public void bind(final Task item, final TaskAdapter.OnItemClickListener listener) {
+        itemView.setOnClickListener(v -> listener.onItemClick(item));
     }
 }

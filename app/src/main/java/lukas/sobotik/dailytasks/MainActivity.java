@@ -43,17 +43,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         taskAdapter.setList(tasks);
-
-        for (Task el : tasks) {
-            Log.d("xxx", "" + el.id);
-            Log.d("xxx", "" + el.taskName);
-            Log.d("xxx", "" + el.taskDescription);
-        }
-
+        taskAdapter.notifyDataSetChanged();
     }
 
     private void initialize() {
-        taskAdapter = new TaskAdapter(this);
+        taskAdapter = new TaskAdapter(this, task -> {
+            Log.d("xxx", task.taskName);
+            new TaskEditDialog(task).show(
+                    getSupportFragmentManager(), TaskEditDialog.TAG);
+        });
         taskRecyclerView = findViewById(R.id.task_recycler_view);
         taskRecyclerView.setAdapter(taskAdapter);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
