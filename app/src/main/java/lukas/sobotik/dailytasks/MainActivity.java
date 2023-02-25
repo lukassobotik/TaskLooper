@@ -1,23 +1,22 @@
 package lukas.sobotik.dailytasks;
 
-import android.content.DialogInterface;
-import androidx.appcompat.app.AppCompatActivity;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.app.ProgressDialog.show;
 
 public class MainActivity extends AppCompatActivity {
 
     TaskAdapter taskAdapter;
     RecyclerView taskRecyclerView;
     FloatingActionButton fab;
+    DatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +24,32 @@ public class MainActivity extends AppCompatActivity {
 
         initialize();
 
-        List<String> list = new ArrayList<>();
-        list.add("eee");
-        list.add("eeee");
+        readDataFromDB();
 
-        taskAdapter.setList(list);
+        fab.setOnClickListener(b -> new TaskCreationDialog().show(
+                getSupportFragmentManager(), TaskCreationDialog.TAG));
+    }
 
-        fab.setOnClickListener(b -> {
-            new TaskCreationDialog().show(
-                    getSupportFragmentManager(), TaskCreationDialog.TAG);
-        });
+    void readDataFromDB() {
+        List<Task> tasks = new ArrayList<>();
+
+        Cursor cursor = dbHelper.readAllData();
+        if (cursor.getCount() == 0) {
+            return;
+        }
+
+        while (cursor.moveToNext()) {
+            tasks.add(new Task(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2)));
+        }
+
+        taskAdapter.setList(tasks);
+
+        for (Task el : tasks) {
+            Log.d("xxx", "" + el.id);
+            Log.d("xxx", "" + el.taskName);
+            Log.d("xxx", "" + el.taskDescription);
+        }
+
     }
 
     private void initialize() {
@@ -43,5 +58,6 @@ public class MainActivity extends AppCompatActivity {
         taskRecyclerView.setAdapter(taskAdapter);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         fab = findViewById(R.id.create_new_task_fab);
+        dbHelper = new DatabaseHelper(this);
     }
 }

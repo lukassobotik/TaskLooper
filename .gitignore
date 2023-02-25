@@ -15,3 +15,6 @@
 .cxx
 local.properties
 /.idea/vcs.xml
+/identifier.sqlite
+/lukas.sobotik.dailytasks
+/UserTasks.db

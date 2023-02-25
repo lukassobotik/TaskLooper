@@ -2,15 +2,13 @@ package lukas.sobotik.dailytasks;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Window;
-import androidx.fragment.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import androidx.fragment.app.DialogFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -36,8 +34,10 @@ public class TaskCreationDialog extends DialogFragment {
 
         saveButton.setOnClickListener(clickedView -> {
             if (!Objects.requireNonNull(taskName.getText()).toString().equals("")) {
-
-                this.dismiss();
+                DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+                dbHelper.addTask(taskName.getText().toString(), Objects.requireNonNull(taskDescription.getText()).toString());
+                dismiss();
+                ((MainActivity) requireActivity()).readDataFromDB();
             } else {
                 taskName.setError("Task Name is Required");
                 taskName.requestFocus();
