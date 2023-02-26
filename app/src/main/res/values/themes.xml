@@ -32,4 +32,8 @@
     <style name="SecondaryButton" parent="Theme.Material3.Light">
         <item name="backgroundTint">@color/md_theme_dark_onPrimary</item>
     </style>
+
+    <style name="DialogFragment" parent="Theme.Material3.Light">
+        <item name="android:backgroundTint">@color/md_theme_light_surfaceVariant</item>
+    </style>
 </resources>

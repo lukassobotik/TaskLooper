@@ -29,7 +29,11 @@
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
     </style>
 
-    <style name="SecondaryButton" parent="Theme.Material3.Light">
+    <style name="SecondaryButton" parent="Theme.Material3.Dark">
         <item name="backgroundTint">@color/md_theme_dark_onSecondaryContainer</item>
+    </style>
+
+    <style name="DialogFragment" parent="Theme.Material3.Dark">
+        <item name="android:backgroundTint">@color/md_theme_dark_outlineVariant</item>
     </style>
 </resources>

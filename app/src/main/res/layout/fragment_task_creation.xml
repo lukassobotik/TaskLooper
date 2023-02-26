@@ -5,10 +5,12 @@
              android:layout_height="match_parent"
              tools:context=".TaskCreationDialog"
              android:padding="16dp"
-             style="@style/Theme.DailyTasks"
-             android:orientation="vertical">
+             style="@style/DialogFragment"
+             android:orientation="vertical"
+             android:background="@drawable/rounded_background">
 
-    <TextView
+
+<TextView
             android:layout_width="match_parent"
             android:minWidth="600dp"
             android:layout_height="wrap_content"
@@ -20,6 +22,7 @@
             android:id="@+id/task_name_text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:hint="@string/task_name">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -33,6 +36,7 @@
             android:id="@+id/task_description_text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:hint="@string/task_description">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -47,5 +51,6 @@
             android:id="@+id/task_save_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@string/save"/>
 </LinearLayout>
