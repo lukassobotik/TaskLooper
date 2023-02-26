@@ -6,4 +6,5 @@
     <string name="task_description">Task Description</string>
     <string name="edit_a_task">Edit a Task</string>
     <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>

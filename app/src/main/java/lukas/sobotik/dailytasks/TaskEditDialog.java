@@ -23,7 +23,7 @@ public class TaskEditDialog extends DialogFragment {
     Task task;
     TextInputEditText taskName;
     TextInputEditText taskDescription;
-    MaterialButton editButton;
+    MaterialButton editButton, deleteButton;
     /** The system calls this to get the DialogFragment's layout, regardless
      of whether it's being displayed as a dialog or an embedded fragment. */
     @Override
@@ -33,6 +33,7 @@ public class TaskEditDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_task_edit, container, false);
 
         editButton = view.findViewById(R.id.task_edit_button);
+        deleteButton = view.findViewById(R.id.task_delete_button);
         taskName = view.findViewById(R.id.task_edit_name_edit_text);
         taskDescription = view.findViewById(R.id.task_edit_description_edit_text);
 
@@ -52,6 +53,16 @@ public class TaskEditDialog extends DialogFragment {
                 taskName.setError("Task Name is Required");
                 taskName.requestFocus();
             }
+        });
+
+        deleteButton.setOnClickListener(clickedView -> {
+            DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+
+            Task newTask = new Task(task.id, taskName.getText().toString(), Objects.requireNonNull(taskDescription.getText()).toString());
+            dbHelper.deleteItem(newTask);
+
+            dismiss();
+            ((MainActivity) requireActivity()).readDataFromDB();
         });
 
         return view;

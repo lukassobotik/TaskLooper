@@ -43,9 +43,25 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-            android:id="@+id/task_edit_button"
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/edit"/>
+            android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+                style="@style/SecondaryButton"
+                android:id="@+id/task_delete_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/delete"/>
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/task_edit_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/edit"/>
+
+    </LinearLayout>
 </LinearLayout>
