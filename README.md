@@ -1,5 +1,5 @@
 <p align="center">
-<img style="align:center;" src="./app/src/DailyTasks-white.png" alt="Logo" width="100" />
+<img style="align:center;" src="./app/src/DailyTasks-white-rounded-240px.png" alt="Logo" width="100" />
 </p>
 
 <h1 align="center">DailyTasks</h1>
