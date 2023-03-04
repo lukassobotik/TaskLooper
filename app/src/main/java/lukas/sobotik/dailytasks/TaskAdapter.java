@@ -1,15 +1,18 @@
 package lukas.sobotik.dailytasks;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
@@ -37,10 +40,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
         return new TaskVH(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull @NotNull TaskVH holder, int position) {
         holder.taskName.setText(list.get(position).taskName);
         holder.taskDescription.setText(list.get(position).taskDescription);
+
+        if (list.get(position).state.equals(TaskCheckState.checked)) {
+            holder.checkBox.setChecked(true);
+        } else {
+            holder.checkBox.setChecked(false);
+        }
 
         Log.d("Custom Logging", holder.taskDescription.getText().toString() + holder.taskDescription.getText().toString().isEmpty());
         if (holder.taskDescription.getText().toString().isEmpty()) {
@@ -49,13 +59,19 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
             holder.taskDescription.setVisibility(View.VISIBLE);
         }
 
+        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        Task task = list.get(position);
         holder.itemView.setOnClickListener(view -> {
-            Log.d("Custom Logging", "Click");
-
             if (holder.checkBox.getCheckedState() == MaterialCheckBox.STATE_UNCHECKED) {
                 holder.checkBox.setChecked(true);
+                task.setState(TaskCheckState.checked);
+                task.setCheckedDate(LocalDate.now().toString());
+                databaseHelper.updateData(task);
             } else {
                 holder.checkBox.setChecked(false);
+                task.setState(TaskCheckState.unchecked);
+                task.setCheckedDate("");
+                databaseHelper.updateData(task);
             }
         });
     }

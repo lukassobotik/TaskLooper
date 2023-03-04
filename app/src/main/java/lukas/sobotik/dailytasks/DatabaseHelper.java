@@ -74,7 +74,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_TASK_TITLE, task.taskName);
         cv.put(COLUMN_TASK_DESCRIPTION, task.taskDescription);
         cv.put(COLUMN_TASK_CHECK_STATE, task.state.toString());
-        cv.put(COLUMN_TASK_DESCRIPTION, task.checkedDate);
+        cv.put(COLUMN_TASK_CHECK_DATE, task.checkedDate);
 
         String stringId = String.valueOf(task.id);
 
