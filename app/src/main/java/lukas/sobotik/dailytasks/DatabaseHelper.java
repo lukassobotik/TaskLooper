@@ -17,6 +17,9 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_TASK_TITLE = "task_title";
     public static final String COLUMN_TASK_DESCRIPTION = "task_description";
+    public static final String COLUMN_TASK_CHECK_STATE = "task_check_state";
+    public static final String COLUMN_TASK_CHECK_DATE = "task_check_date";
+
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,7 +31,9 @@ class DatabaseHelper extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_NAME
                 + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_TASK_TITLE + " TEXT, "
-                + COLUMN_TASK_DESCRIPTION + " TEXT);";
+                + COLUMN_TASK_DESCRIPTION + " TEXT, "
+                + COLUMN_TASK_CHECK_STATE + " TEXT, "
+                + COLUMN_TASK_CHECK_DATE + " TEXT);";
         db.execSQL(query);
     }
 
@@ -44,6 +49,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
         cv.put(COLUMN_TASK_TITLE, taskTitle);
         cv.put(COLUMN_TASK_DESCRIPTION, taskDescription);
+        cv.put(COLUMN_TASK_CHECK_STATE, "");
+        cv.put(COLUMN_TASK_CHECK_DATE, "");
 
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1) {
@@ -66,6 +73,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TASK_TITLE, task.taskName);
         cv.put(COLUMN_TASK_DESCRIPTION, task.taskDescription);
+        cv.put(COLUMN_TASK_CHECK_STATE, task.state.toString());
+        cv.put(COLUMN_TASK_DESCRIPTION, task.checkedDate);
 
         String stringId = String.valueOf(task.id);
 

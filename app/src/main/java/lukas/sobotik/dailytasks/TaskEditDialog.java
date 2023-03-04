@@ -47,7 +47,7 @@ public class TaskEditDialog extends DialogFragment {
             if (!Objects.requireNonNull(taskName.getText()).toString().equals("")) {
                 DatabaseHelper dbHelper = new DatabaseHelper(getContext());
 
-                Task newTask = new Task(task.id, taskName.getText().toString(), Objects.requireNonNull(taskDescription.getText()).toString());
+                Task newTask = new Task(task.id, taskName.getText().toString(), Objects.requireNonNull(taskDescription.getText()).toString(), task.state, task.checkedDate);
                 dbHelper.updateData(newTask);
 
                 dismiss();
@@ -61,7 +61,7 @@ public class TaskEditDialog extends DialogFragment {
         deleteButton.setOnClickListener(clickedView -> {
             DatabaseHelper dbHelper = new DatabaseHelper(getContext());
 
-            Task newTask = new Task(task.id, taskName.getText().toString(), Objects.requireNonNull(taskDescription.getText()).toString());
+            Task newTask = new Task(task.id, taskName.getText().toString(), Objects.requireNonNull(taskDescription.getText()).toString(), task.state, task.checkedDate);
             dbHelper.deleteItem(newTask);
 
             dismiss();

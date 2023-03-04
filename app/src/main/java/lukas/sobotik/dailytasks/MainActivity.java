@@ -11,6 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         taskRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), taskRecyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Log.d("Custom Logging", "Short Click");
+
             }
 
             @Override
@@ -54,7 +55,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         while (cursor.moveToNext()) {
-            tasks.add(new Task(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2)));
+            TaskCheckState state;
+            if (Objects.equals(cursor.getString(3), TaskCheckState.checked.toString())) {
+                state = TaskCheckState.checked;
+            } else {
+                state = TaskCheckState.unchecked;
+            }
+
+            tasks.add(new Task(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), state, cursor.getString(4)));
         }
 
         taskAdapter.setList(tasks);

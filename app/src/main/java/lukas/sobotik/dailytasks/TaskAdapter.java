@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.checkbox.MaterialCheckBox;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -47,6 +48,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
         } else {
             holder.taskDescription.setVisibility(View.VISIBLE);
         }
+
+        holder.itemView.setOnClickListener(view -> {
+            Log.d("Custom Logging", "Click");
+
+            if (holder.checkBox.getCheckedState() == MaterialCheckBox.STATE_UNCHECKED) {
+                holder.checkBox.setChecked(true);
+            } else {
+                holder.checkBox.setChecked(false);
+            }
+        });
     }
 
     @Override
