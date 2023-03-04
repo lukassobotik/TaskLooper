@@ -44,10 +44,19 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull @NotNull TaskVH holder, int position) {
+        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        Task task = list.get(position);
+
         holder.taskName.setText(list.get(position).taskName);
         holder.taskDescription.setText(list.get(position).taskDescription);
 
-        if (list.get(position).state.equals(TaskCheckState.checked)) {
+        if (!task.checkedDate.equals(LocalDate.now().toString())) {
+            task.setState(TaskCheckState.unchecked);
+            task.setCheckedDate("");
+            databaseHelper.updateData(task);
+        }
+
+        if (task.state.equals(TaskCheckState.checked)) {
             holder.checkBox.setChecked(true);
         } else {
             holder.checkBox.setChecked(false);
@@ -61,8 +70,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
         }
 
         // CheckBox change written to the Database
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
-        Task task = list.get(position);
         holder.checkBox.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) {
                 task.setState(TaskCheckState.checked);
