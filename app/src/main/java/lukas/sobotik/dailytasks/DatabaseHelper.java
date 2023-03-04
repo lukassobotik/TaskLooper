@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 
@@ -55,8 +54,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1) {
             Toast.makeText(context, "Failed to save to the Database", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Successfully saved to the Database", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -81,8 +78,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.update(TABLE_NAME, cv, COLUMN_ID + "= ?", new String[]{stringId});
         if (result == -1) {
             Toast.makeText(context, "Failed to edit the Task", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Successfully edited the Task", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -93,8 +88,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.delete(TABLE_NAME,COLUMN_ID + "= ?", new String[]{stringId});
         if (result == -1) {
             Toast.makeText(context, "Failed to delete the Task", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Successfully deleted the Task", Toast.LENGTH_SHORT).show();
         }
     }
 }

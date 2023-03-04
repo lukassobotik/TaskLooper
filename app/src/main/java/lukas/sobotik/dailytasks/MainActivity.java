@@ -2,11 +2,11 @@ package lukas.sobotik.dailytasks;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView taskRecyclerView;
     FloatingActionButton fab;
     DatabaseHelper dbHelper;
+    SwipeRefreshLayout refreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager(), TaskEditDialog.TAG);
             }
         }));
+
+        refreshLayout.setOnRefreshListener(() -> {
+            readDataFromDB();
+            refreshLayout.setRefreshing(false);
+        });
     }
 
     void readDataFromDB() {
@@ -76,5 +82,6 @@ public class MainActivity extends AppCompatActivity {
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         fab = findViewById(R.id.create_new_task_fab);
         dbHelper = new DatabaseHelper(this);
+        refreshLayout = findViewById(R.id.task_refresh_layout);
     }
 }
