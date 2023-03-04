@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialize() {
         taskAdapter = new TaskAdapter(this, task -> {
-            Log.d("xxx", task.taskName);
             new TaskEditDialog(task).show(
                     getSupportFragmentManager(), TaskEditDialog.TAG);
         });

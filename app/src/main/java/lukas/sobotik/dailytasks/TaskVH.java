@@ -1,5 +1,6 @@
 package lukas.sobotik.dailytasks;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.NonNull;

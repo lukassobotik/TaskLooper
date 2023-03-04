@@ -1,6 +1,7 @@
 package lukas.sobotik.dailytasks;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
     public void onBindViewHolder(@NonNull @NotNull TaskVH holder, int position) {
         holder.taskName.setText(list.get(position).taskName);
         holder.taskDescription.setText(list.get(position).taskDescription);
+
+        Log.d("Custom Logging", holder.taskDescription.getText().toString() + holder.taskDescription.getText().toString().isEmpty());
+        if (holder.taskDescription.getText().toString().isEmpty()) {
+            holder.taskDescription.setVisibility(View.GONE);
+        } else {
+            holder.taskDescription.setVisibility(View.VISIBLE);
+        }
 
         holder.bind(list.get(position), listener);
     }
