@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
@@ -59,8 +60,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
             holder.taskDescription.setVisibility(View.VISIBLE);
         }
 
+        // CheckBox change written to the Database
         DatabaseHelper databaseHelper = new DatabaseHelper(context);
         Task task = list.get(position);
+        holder.checkBox.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                task.setState(TaskCheckState.checked);
+                task.setCheckedDate(LocalDate.now().toString());
+                databaseHelper.updateData(task);
+            } else {
+                task.setState(TaskCheckState.unchecked);
+                task.setCheckedDate("");
+                databaseHelper.updateData(task);
+            }
+        });
         holder.itemView.setOnClickListener(view -> {
             if (holder.checkBox.getCheckedState() == MaterialCheckBox.STATE_UNCHECKED) {
                 holder.checkBox.setChecked(true);
