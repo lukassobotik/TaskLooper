@@ -1,6 +1,5 @@
 package lukas.sobotik.dailytasks;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -14,8 +13,5 @@ public class TaskVH extends RecyclerView.ViewHolder {
         super(itemView);
         taskName = itemView.findViewById(R.id.task_card_name);
         taskDescription = itemView.findViewById(R.id.task_card_description);
-    }
-    public void bind(final Task item, final TaskAdapter.OnItemClickListener listener) {
-        itemView.setOnClickListener(v -> listener.onItemClick(item));
     }
 }

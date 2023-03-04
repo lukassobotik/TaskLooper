@@ -3,6 +3,7 @@ package lukas.sobotik.dailytasks;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +29,20 @@ public class MainActivity extends AppCompatActivity {
 
         fab.setOnClickListener(b -> new TaskCreationDialog().show(
                 getSupportFragmentManager(), TaskCreationDialog.TAG));
+
+        taskRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), taskRecyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Log.d("Custom Logging", "Short Click");
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Task task = taskAdapter.getTaskFromPosition(position);
+                new TaskEditDialog(task).show(
+                        getSupportFragmentManager(), TaskEditDialog.TAG);
+            }
+        }));
     }
 
     void readDataFromDB() {
@@ -47,10 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        taskAdapter = new TaskAdapter(this, task -> {
-            new TaskEditDialog(task).show(
-                    getSupportFragmentManager(), TaskEditDialog.TAG);
-        });
+        taskAdapter = new TaskAdapter(this);
         taskRecyclerView = findViewById(R.id.task_recycler_view);
         taskRecyclerView.setAdapter(taskAdapter);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
