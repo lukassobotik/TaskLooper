@@ -1,11 +1,11 @@
 <p align="center">
-<img style="align:center;" src="./app/src/DailyTasks-white-rounded-240px.png" alt="Logo" width="100" />
+<img style="align:center;" src="./app/src/rsz_logo.png" alt="Logo" width="100" />
 </p>
 
-<h1 align="center">DailyTasks</h1>
+<h1 align="center">TaskLooper</h1>
 <h3 align="center">Android app where you manage daily tasks you want to complete.</h3>
 <p align="center">
-<a href="https://lukassobotik.dev/project/DailyTasks">Website</a> | <a href="https://www.buymeacoffee.com/puckyeu">Support Me</a>
+<a href="https://lukassobotik.dev/project/TaskLooper">Website</a> | <a href="https://www.buymeacoffee.com/puckyeu">Support Me</a>
 </p>
 
 ### Overview

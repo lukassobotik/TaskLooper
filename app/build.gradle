@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'lukas.sobotik.dailytasks'
+    namespace 'lukas.sobotik.tasklooper'
     compileSdk 33
 
     defaultConfig {
-        applicationId "lukas.sobotik.dailytasks"
+        applicationId "lukas.sobotik.tasklooper"
         minSdk 25
         targetSdk 32
         versionCode 1
@@ -29,7 +29,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
