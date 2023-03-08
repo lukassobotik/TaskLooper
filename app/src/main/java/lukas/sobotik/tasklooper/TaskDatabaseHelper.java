@@ -7,8 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
+import lukas.sobotik.tasklooper.entity.Task;
 
-class TaskDatabaseHelper extends SQLiteOpenHelper {
+public class TaskDatabaseHelper extends SQLiteOpenHelper {
     Context context;
     public static final String DATABASE_NAME = "UserTasks.db";
     public static final int DATABASE_VERSION = 1;
@@ -42,7 +43,7 @@ class TaskDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addTask(String taskTitle, String taskDescription) {
+    public void addTask(String taskTitle, String taskDescription) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -65,15 +66,15 @@ class TaskDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateData(Task task) {
+    public void updateData(Task task) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_TASK_TITLE, task.taskName);
-        cv.put(COLUMN_TASK_DESCRIPTION, task.taskDescription);
-        cv.put(COLUMN_TASK_CHECK_STATE, task.state.toString());
-        cv.put(COLUMN_TASK_CHECK_DATE, task.checkedDate);
+        cv.put(COLUMN_TASK_TITLE, task.getTaskName());
+        cv.put(COLUMN_TASK_DESCRIPTION, task.getTaskDescription());
+        cv.put(COLUMN_TASK_CHECK_STATE, task.getState().toString());
+        cv.put(COLUMN_TASK_CHECK_DATE, task.getCheckedDate());
 
-        String stringId = String.valueOf(task.id);
+        String stringId = String.valueOf(task.getId());
 
         long result = db.update(TABLE_NAME, cv, COLUMN_ID + "= ?", new String[]{stringId});
         if (result == -1) {
@@ -81,9 +82,9 @@ class TaskDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteItem(Task task) {
+    public void deleteItem(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String stringId = String.valueOf(task.id);
+        String stringId = String.valueOf(task.getId());
 
         long result = db.delete(TABLE_NAME,COLUMN_ID + "= ?", new String[]{stringId});
         if (result == -1) {

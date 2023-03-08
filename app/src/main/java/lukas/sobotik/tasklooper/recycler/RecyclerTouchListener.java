@@ -1,4 +1,4 @@
-package lukas.sobotik.tasklooper;
+package lukas.sobotik.tasklooper.recycler;
 
 import android.content.Context;
 import android.view.GestureDetector;

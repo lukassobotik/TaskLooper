@@ -8,6 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import lukas.sobotik.tasklooper.recycler.RecyclerTouchListener;
+import lukas.sobotik.tasklooper.recycler.TaskAdapter;
+import lukas.sobotik.tasklooper.entity.Task;
+import lukas.sobotik.tasklooper.entity.TaskCheckState;
+import lukas.sobotik.tasklooper.fragment.TaskCreationDialog;
+import lukas.sobotik.tasklooper.fragment.TaskEditDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    void readDataFromDB() {
+    public void readDataFromDB() {
         List<Task> tasks = new ArrayList<>();
 
         Cursor cursor = dbHelper.readAllData();

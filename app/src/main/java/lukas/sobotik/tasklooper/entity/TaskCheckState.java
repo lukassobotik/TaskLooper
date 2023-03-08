@@ -1,4 +1,4 @@
-package lukas.sobotik.tasklooper;
+package lukas.sobotik.tasklooper.entity;
 
 public enum TaskCheckState {
     checked,

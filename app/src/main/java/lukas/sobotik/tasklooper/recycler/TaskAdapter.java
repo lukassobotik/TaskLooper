@@ -1,4 +1,4 @@
-package lukas.sobotik.tasklooper;
+package lukas.sobotik.tasklooper.recycler;
 
 import android.content.Context;
 import android.os.Build;
@@ -10,6 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.checkbox.MaterialCheckBox;
+import lukas.sobotik.tasklooper.R;
+import lukas.sobotik.tasklooper.entity.Task;
+import lukas.sobotik.tasklooper.entity.TaskCheckState;
+import lukas.sobotik.tasklooper.TaskDatabaseHelper;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
@@ -46,19 +50,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
         TaskDatabaseHelper taskDatabaseHelper = new TaskDatabaseHelper(context);
         Task task = list.get(position);
 
-        holder.taskName.setText(list.get(position).taskName);
-        holder.taskDescription.setText(list.get(position).taskDescription);
+        holder.taskName.setText(list.get(position).getTaskName());
+        holder.taskDescription.setText(list.get(position).getTaskDescription());
 
-        if (!task.checkedDate.equals(LocalDate.now().toString())) {
+        if (!task.getCheckedDate().equals(LocalDate.now().toString())) {
             task.setState(TaskCheckState.unchecked);
             task.setCheckedDate("");
             taskDatabaseHelper.updateData(task);
+            holder.itemView.setAlpha(1);
         }
 
-        if (task.state.equals(TaskCheckState.checked)) {
+        if (task.getState().equals(TaskCheckState.checked)) {
             holder.checkBox.setChecked(true);
+            holder.itemView.setAlpha(0.5f);
         } else {
             holder.checkBox.setChecked(false);
+            holder.itemView.setAlpha(1);
         }
 
         Log.d("Custom Logging", holder.taskDescription.getText().toString() + holder.taskDescription.getText().toString().isEmpty());

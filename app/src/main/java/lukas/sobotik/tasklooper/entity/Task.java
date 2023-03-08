@@ -1,4 +1,4 @@
-package lukas.sobotik.tasklooper;
+package lukas.sobotik.tasklooper.entity;
 
 import androidx.annotation.NonNull;
 
