@@ -37,7 +37,7 @@ public class TaskCreationDialog extends DialogFragment {
 
         saveButton.setOnClickListener(clickedView -> {
             if (!Objects.requireNonNull(taskName.getText()).toString().equals("")) {
-                DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+                TaskDatabaseHelper dbHelper = new TaskDatabaseHelper(getContext());
                 dbHelper.addTask(taskName.getText().toString(), Objects.requireNonNull(taskDescription.getText()).toString());
                 dismiss();
                 ((MainActivity) requireActivity()).readDataFromDB();

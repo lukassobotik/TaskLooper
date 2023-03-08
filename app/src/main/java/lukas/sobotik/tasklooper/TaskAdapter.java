@@ -43,7 +43,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull @NotNull TaskVH holder, int position) {
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        TaskDatabaseHelper taskDatabaseHelper = new TaskDatabaseHelper(context);
         Task task = list.get(position);
 
         holder.taskName.setText(list.get(position).taskName);
@@ -52,7 +52,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
         if (!task.checkedDate.equals(LocalDate.now().toString())) {
             task.setState(TaskCheckState.unchecked);
             task.setCheckedDate("");
-            databaseHelper.updateData(task);
+            taskDatabaseHelper.updateData(task);
         }
 
         if (task.state.equals(TaskCheckState.checked)) {
@@ -73,11 +73,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
             if (b) {
                 task.setState(TaskCheckState.checked);
                 task.setCheckedDate(LocalDate.now().toString());
-                databaseHelper.updateData(task);
+                taskDatabaseHelper.updateData(task);
+                holder.itemView.setAlpha(0.5f);
             } else {
                 task.setState(TaskCheckState.unchecked);
                 task.setCheckedDate("");
-                databaseHelper.updateData(task);
+                taskDatabaseHelper.updateData(task);
+                holder.itemView.setAlpha(1);
             }
         });
         holder.itemView.setOnClickListener(view -> {
@@ -85,12 +87,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskVH> {
                 holder.checkBox.setChecked(true);
                 task.setState(TaskCheckState.checked);
                 task.setCheckedDate(LocalDate.now().toString());
-                databaseHelper.updateData(task);
+                taskDatabaseHelper.updateData(task);
+                holder.itemView.setAlpha(0.5f);
             } else {
                 holder.checkBox.setChecked(false);
                 task.setState(TaskCheckState.unchecked);
                 task.setCheckedDate("");
-                databaseHelper.updateData(task);
+                taskDatabaseHelper.updateData(task);
+                holder.itemView.setAlpha(1);
             }
         });
     }

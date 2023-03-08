@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 
-class DatabaseHelper extends SQLiteOpenHelper {
+class TaskDatabaseHelper extends SQLiteOpenHelper {
     Context context;
     public static final String DATABASE_NAME = "UserTasks.db";
     public static final int DATABASE_VERSION = 1;
@@ -20,7 +20,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TASK_CHECK_DATE = "task_check_date";
 
 
-    public DatabaseHelper(@Nullable Context context) {
+    public TaskDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     TaskAdapter taskAdapter;
     RecyclerView taskRecyclerView;
     FloatingActionButton fab;
-    DatabaseHelper dbHelper;
+    TaskDatabaseHelper dbHelper;
     SwipeRefreshLayout refreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         taskRecyclerView.setAdapter(taskAdapter);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         fab = findViewById(R.id.create_new_task_fab);
-        dbHelper = new DatabaseHelper(this);
+        dbHelper = new TaskDatabaseHelper(this);
         refreshLayout = findViewById(R.id.task_refresh_layout);
     }
 }
