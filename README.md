@@ -9,9 +9,11 @@
 </p>
 
 ### Overview
-It is a lightweight task-repeating Android application. They will uncheck on the next day.
-As everything is kept locally, you may relax regarding Your privacy.
-This application is clutter-free.
+This lightweight task-repeating Android application is designed to help users keep track of their daily tasks and activities without any unnecessary clutter. 
+The application automatically unchecks completed tasks the next day, making it easy for users to manage their to-do list on a daily basis.
+
+One of the key benefits of this application is that all the data is stored locally, ensuring user privacy and security. 
+The app is also very simple and easy to use, with a minimalistic interface that doesn't require any complex setup or configuration.
 
 Although it is similar to my other repository [**Repeaty**](https://github.com/PuckyEU/habit-manager),
 I have slightly different plans and goals for it. [**Repeaty**](https://github.com/PuckyEU/habit-manager) was more on the habit building side,
