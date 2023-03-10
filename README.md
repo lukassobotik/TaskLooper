@@ -5,7 +5,7 @@
 <h1 align="center">TaskLooper</h1>
 <h3 align="center">Seize the Day, Repeat the Success.</h3>
 <p align="center">
-<a href="https://lukassobotik.dev/project/TaskLooper">Website</a> | <a href="https://www.buymeacoffee.com/puckyeu">Support Me</a>
+<a href="https://play.google.com/store/apps/details?id=lukas.sobotik.tasklooper">Play Store</a> | <a href="https://www.buymeacoffee.com/puckyeu">Support Me</a> | <a href="https://lukassobotik.dev/project/TaskLooper">Website</a>
 </p>
 
 ### Overview
