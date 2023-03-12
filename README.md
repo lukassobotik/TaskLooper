@@ -18,3 +18,6 @@ The app is also very simple and easy to use, with a minimalistic interface that 
 Although it is similar to my other repository [**Repeaty**](https://github.com/PuckyEU/habit-manager),
 I have slightly different plans and goals for it. [**Repeaty**](https://github.com/PuckyEU/habit-manager) was more on the habit building side,
 this is more on the to-do list side.
+
+### Download
+You can download TaskLooper from the [**Google Play Store**](https://play.google.com/store/apps/details?id=lukas.sobotik.tasklooper) or the APK from the [**Releases**](https://github.com/PuckyEU/TaskLooper/releases) section.
